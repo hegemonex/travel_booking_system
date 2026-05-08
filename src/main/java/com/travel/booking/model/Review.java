@@ -6,8 +6,8 @@ import java.time.LocalDateTime;
 public class Review {
 
     private Long id;
-    private Long userId;
-    private Long tripId;
+    private User user;
+    private Trip trip;
     private int rating;
     private String comment;
     private boolean recommended;
@@ -22,20 +22,20 @@ public class Review {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Long getTripId() {
-        return tripId;
+    public Trip getTrip() {
+        return trip;
     }
 
-    public void setTripId(Long tripId) {
-        this.tripId = tripId;
+    public void setTrip(Trip trip) {
+        this.trip = trip;
     }
 
     public int getRating() {

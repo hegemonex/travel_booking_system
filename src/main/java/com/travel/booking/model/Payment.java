@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 public class Payment {
 
     private Long id;
-    private Long bookingId;
+    private Booking booking;
     private String paymentMethod;
     private double amount;
     private boolean successful;
@@ -21,13 +21,11 @@ public class Payment {
         this.id = id;
     }
 
-    public Long getBookingId() {
-        return bookingId;
+    public Booking getBooking() {
+        return booking;
     }
 
-    public void setBookingId(Long bookingId) {
-        this.bookingId = bookingId;
-    }
+    public void setBooking(Booking booking) { this.booking = booking; }
 
     public String getPaymentMethod() {
         return paymentMethod;

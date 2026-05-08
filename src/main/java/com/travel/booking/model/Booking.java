@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 public class Booking {
 
     private Long id;
-    private Long tripId;
+    private Trip trip;
     private double totalPrice;
     private boolean confirmed;
     private LocalDate bookingDate;
@@ -20,13 +20,9 @@ public class Booking {
         this.id = id;
     }
 
-    public Long getTripId() {
-        return tripId;
-    }
+    public Trip getTrip() { return trip; }
 
-    public void setTripId(Long tripId) {
-        this.tripId = tripId;
-    }
+    public void setTrip(Trip trip) { this.trip = trip; }
 
     public double getTotalPrice() {
         return totalPrice;

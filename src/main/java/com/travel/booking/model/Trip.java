@@ -7,10 +7,10 @@ import java.util.List;
 public class Trip {
 
     private Long id;
-    private Long hotelId;
-    private Long flightId;
-    private Long transportId;
-    private Long PackageId;
+    private Hotel hotel;
+    private Flight flight;
+    private Transport transport;
+    private Package Package;
     private String title;
     private String description;
     private double price;
@@ -29,36 +29,36 @@ public class Trip {
         this.id = id;
     }
 
-    public Long getHotelId() {
-        return hotelId;
+    public Hotel getHotel() {
+        return hotel;
     }
 
-    public void setHotelId(Long hotelId) {
-        this.hotelId = hotelId;
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
     }
 
-    public Long getFlightId() {
-        return flightId;
+    public Flight getFlight() {
+        return flight;
     }
 
-    public void setFlightId(Long flightId) {
-        this.flightId = flightId;
+    public void setFlight(Flight flight) {
+        this.flight = flight;
     }
 
-    public Long getTransportId() {
-        return transportId;
+    public Transport getTransport() {
+        return transport;
     }
 
-    public void setTransportId(Long transportId) {
-        this.transportId = transportId;
+    public void setTransport(Transport transport) {
+        this.transport = transport;
     }
 
-    public Long getPackageId() {
-        return PackageId;
+    public Package getPackage() {
+        return Package;
     }
 
-    public void setPackageId(Long packageId) {
-        PackageId = packageId;
+    public void setPackage(Package aPackage) {
+        Package = aPackage;
     }
 
     public String getTitle() {
