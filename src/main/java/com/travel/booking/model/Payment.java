@@ -8,7 +8,6 @@ public class Payment {
     private Long id;
     private Booking booking;
     private String paymentMethod;
-    private Payment payment;
     private double amount;
     private boolean successful;
     private LocalDate paymentDate;
@@ -36,13 +35,6 @@ public class Payment {
         this.paymentMethod = paymentMethod;
     }
 
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
 
     public double getAmount() {
         return amount;

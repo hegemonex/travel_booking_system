@@ -7,6 +7,7 @@ public class Booking {
 
     private Long id;
     private Trip trip;
+    private Payment payment;
     private double totalPrice;
     private boolean confirmed;
     private LocalDate bookingDate;
@@ -23,6 +24,15 @@ public class Booking {
     public Trip getTrip() { return trip; }
 
     public void setTrip(Trip trip) { this.trip = trip; }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+
 
     public double getTotalPrice() {
         return totalPrice;
