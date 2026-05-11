@@ -121,13 +121,13 @@ CREATE TABLE IF NOT EXISTS `mydb`.`trips` (
   `createdAt` DATE NOT NULL,
   `flight_id` BIGINT(255) NOT NULL,
   `transport_id` BIGINT(255) NOT NULL,
-  `travelPackage_id` BIGINT(255) NOT NULL,
+  `travel_package_id` BIGINT(255) NOT NULL,
   `travel_booking_system_id` BIGINT(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `idTrips_UNIQUE` (`id` ASC) VISIBLE,
   INDEX `fk_Trips_Flights1_idx` (`flight_id` ASC) VISIBLE,
   INDEX `fk_Trips_Transports1_idx` (`transport_id` ASC) VISIBLE,
-  INDEX `fk_Trips_TravelPackage1_idx` (`travelPackage_id` ASC) VISIBLE,
+  INDEX `fk_Trips_TravelPackage1_idx` (`travel_package_id` ASC) VISIBLE,
   INDEX `fk_trips_travel_booking_system1_idx` (`travel_booking_system_id` ASC) VISIBLE,
   CONSTRAINT `fk_Trips_Flights1`
     FOREIGN KEY (`flight_id`)
@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`trips` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Trips_TravelPackage1`
-    FOREIGN KEY (`travelPackage_id`)
+    FOREIGN KEY (`travel_package_id`)
     REFERENCES `mydb`.`travel_packages` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
@@ -149,6 +149,21 @@ CREATE TABLE IF NOT EXISTS `mydb`.`trips` (
     REFERENCES `mydb`.`travel_booking_system` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`payments`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`payments` (
+  `id` BIGINT(255) NOT NULL,
+  `paymentMethod` VARCHAR(45) NOT NULL,
+  `amount` DOUBLE NOT NULL,
+  `successful` TINYINT NOT NULL,
+  `paymentDate` DATE NOT NULL,
+  `createdAt` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `idPayments_UNIQUE` (`id` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
@@ -163,10 +178,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`bookings` (
   `createdAt` DATETIME NOT NULL,
   `user_id` BIGINT(255) ZEROFILL NOT NULL,
   `trip_id` BIGINT(255) NOT NULL,
+  `payments_id` BIGINT(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `idBookings_UNIQUE` (`id` ASC) VISIBLE,
   INDEX `fk_Bookings_Users_idx` (`user_id` ASC) VISIBLE,
   INDEX `fk_Bookings_Trips1_idx` (`trip_id` ASC) VISIBLE,
+  INDEX `fk_bookings_payments1_idx` (`payments_id` ASC) VISIBLE,
   CONSTRAINT `fk_Bookings_Users`
     FOREIGN KEY (`user_id`)
     REFERENCES `mydb`.`users` (`id`)
@@ -175,6 +192,11 @@ CREATE TABLE IF NOT EXISTS `mydb`.`bookings` (
   CONSTRAINT `fk_Bookings_Trips1`
     FOREIGN KEY (`trip_id`)
     REFERENCES `mydb`.`trips` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_bookings_payments1`
+    FOREIGN KEY (`payments_id`)
+    REFERENCES `mydb`.`payments` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -207,35 +229,13 @@ CREATE TABLE IF NOT EXISTS `mydb`.`hotels` (
   `breakfastIncluded` TINYINT NOT NULL,
   `pricePerNight` DOUBLE NOT NULL,
   `createdAt` DATETIME NOT NULL,
-  `Trips_idTrips` INT NOT NULL,
+  `trips_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `idHotels_UNIQUE` (`id` ASC) VISIBLE,
-  INDEX `fk_Hotels_Trips1_idx` (`Trips_idTrips` ASC) VISIBLE,
+  INDEX `fk_Hotels_Trips1_idx` (`trips_id` ASC) VISIBLE,
   CONSTRAINT `fk_Hotels_Trips1`
-    FOREIGN KEY (`Trips_idTrips`)
+    FOREIGN KEY (`trips_id`)
     REFERENCES `mydb`.`trips` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`payments`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`payments` (
-  `id` BIGINT(255) NOT NULL,
-  `paymentMethod` VARCHAR(45) NOT NULL,
-  `amount` DOUBLE NOT NULL,
-  `successful` TINYINT NOT NULL,
-  `paymentDate` DATE NOT NULL,
-  `createdAt` DATETIME NOT NULL,
-  `bookings_id` BIGINT(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `idPayments_UNIQUE` (`id` ASC) VISIBLE,
-  INDEX `fk_payments_bookings1_idx` (`bookings_id` ASC) VISIBLE,
-  CONSTRAINT `fk_payments_bookings1`
-    FOREIGN KEY (`bookings_id`)
-    REFERENCES `mydb`.`bookings` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
