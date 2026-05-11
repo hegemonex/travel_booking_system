@@ -6,14 +6,11 @@ import java.util.List;
 public class TravelBookingSystem {
 
     private Long id;
-
     private String systemName;
-
     private LocalDateTime createdAt;
-
     private List<User> users;
-
     private List<Trip> trips;
+    private List<TravelPackage> packages;
 
     public Long getId() {
         return id;
@@ -53,5 +50,13 @@ public class TravelBookingSystem {
 
     public void setTrips(List<Trip> trips) {
         this.trips = trips;
+    }
+
+    public List<TravelPackage> getPackages() {
+        return packages;
+    }
+
+    public void setPackages(List<TravelPackage> packages) {
+        this.packages = packages;
     }
 }

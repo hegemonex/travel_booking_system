@@ -7,19 +7,12 @@ import java.util.List;
 public class User {
 
     private Long id;
-
     private String firstName;
-
     private String lastName;
-
     private String email;
-
     private LocalDate birthDate;
-
     private LocalDateTime createdAt;
-
     private List<Booking> bookings;
-
     private List<Review> reviews;
 
     public Long getId() {
